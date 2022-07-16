@@ -4,4 +4,9 @@ import ru.inobitec.patient.model.Patient;
 
 public interface PatientService {
     public Patient getPatientById(Long id);
+    public void addPatient(Patient newPatient);
+
+    public void updatePatient(Patient patientUpdate, Long id);
+
+    public void deleteOPatientById(Long id);
 }

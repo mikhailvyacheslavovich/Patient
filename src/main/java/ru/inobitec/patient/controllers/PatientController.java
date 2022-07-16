@@ -1,10 +1,9 @@
 package ru.inobitec.patient.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.inobitec.patient.model.Patient;
 import ru.inobitec.patient.service.PatientService;
 
@@ -18,5 +17,24 @@ public class PatientController {
     @GetMapping("/patient/{id}")
     public Patient getOrderById(@PathVariable("id") Long id) {
         return patientService.getPatientById(id);
+    }
+
+    @PostMapping("/patient")
+    public String addPatient(@RequestBody Patient newPatient) {
+        patientService.addPatient(newPatient);
+        return "Patient was created";
+    }
+
+    @PutMapping("/updatePatient/{id}")
+    public String updatePatient(@RequestBody Patient patientUpdate,
+                                @PathVariable("id") Long id) {
+        patientService.updatePatient(patientUpdate, id);
+        return "Patient updated";
+    }
+
+    @DeleteMapping("/deletePatient/{id}")
+    public String deletePatientById(@PathVariable("id") Long id) {
+        patientService.deleteOPatientById(id);
+        return "Patient deleted";
     }
 }

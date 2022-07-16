@@ -15,4 +15,19 @@ public class PatientServiceImpl implements PatientService {
     public Patient getPatientById(Long id) {
         return patientMapper.getPatientById(id);
     }
+
+    @Override
+    public void addPatient(Patient newPatient) {
+        patientMapper.addPatient(newPatient);
+    }
+
+    @Override
+    public void updatePatient(Patient patientUpdate, Long id) {
+        patientMapper.updatePatient(patientUpdate, id);
+    }
+
+    @Override
+    public void deleteOPatientById(Long id) {
+        patientMapper.deletePatientById(id);
+    }
 }
