@@ -2,7 +2,32 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
+<mapper namespace="ru.inobitec.patient.repository.PatientMapper">
 
+    <resultMap id="Patient" type="ru.inobitec.patient.model.Patient">
+        <result property="id" column="id"/>
+        <result property="firstName" column="FIRST_NAME"/>
+        <result property="midName" column="MID_NAME"/>
+        <result property="lastName" column="LAST_NAME"/>
+        <result property="genderId" column="GENDER_ID"/>
+        <result property="birthday" column="BIRTHDAY"/>
+        <result property="phone" column="PHONE"/>
+        <result property="email" column="EMAIL"/>
+        <result property="address" column="ADDRESS"/>
+    </resultMap>
+
+    <select id="getPatientById" parameterType="java.lang.Long" resultMap="Patient">
+        SELECT id,
+               FIRST_NAME,
+               MID_NAME,
+               LAST_NAME,
+               GENDER_ID,
+               BIRTHDAY,
+               PHONE,
+               EMAIL,
+               ADDRESS
+        FROM patient
+        WHERE id = #{id}
+    </select>
 
 </mapper>
