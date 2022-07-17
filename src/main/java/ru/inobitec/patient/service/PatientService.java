@@ -8,5 +8,6 @@ public interface PatientService {
 
     public void updatePatient(Patient patientUpdate, Long id);
 
+    public Patient getPatientByName(String name);
     public void deleteOPatientById(Long id);
 }

@@ -27,6 +27,11 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public Patient getPatientByName(String name) {
+        return patientMapper.getPatientByName(name);
+    }
+
+    @Override
     public void deleteOPatientById(Long id) {
         patientMapper.deletePatientById(id);
     }

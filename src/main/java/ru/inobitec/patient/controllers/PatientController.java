@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.inobitec.patient.model.Patient;
 import ru.inobitec.patient.service.PatientService;
 
+import javax.websocket.server.PathParam;
+
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
@@ -17,6 +19,10 @@ public class PatientController {
     @GetMapping("/patient/{id}")
     public Patient getOrderById(@PathVariable("id") Long id) {
         return patientService.getPatientById(id);
+    }
+    @GetMapping("/patientName")
+    public Patient getPatientByName(@PathParam("name") String name){
+        return patientService.getPatientByName(name);
     }
 
     @PostMapping("/patient")
