@@ -46,8 +46,8 @@
     </select>
 
     <insert id="addPatient" parameterType="ru.inobitec.patient.model.Patient">
-        <!--<selectKey keyProperty="id" keyColumn="id" resultType="long" order="BEFORE">SELECT nextval('ORDER_SEQ')
-        </selectKey>-->
+        <selectKey keyProperty="id" keyColumn="id" resultType="long" order="BEFORE">SELECT nextval('Patient_SEQ')
+        </selectKey>
         INSERT INTO patient (id, FIRST_NAME, MID_NAME, LAST_NAME, GENDER_ID, BIRTHDAY, PHONE, EMAIL, ADDRESS)
         VALUES (#{id}, #{firstName}, #{midName}, #{lastName}, #{genderId}, #{birthday}, #{phone}, #{email}, #{address});
     </insert>
