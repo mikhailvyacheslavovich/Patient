@@ -8,6 +8,7 @@ import ru.inobitec.patient.model.Patient;
 import ru.inobitec.patient.service.PatientService;
 
 import javax.websocket.server.PathParam;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/")
@@ -20,9 +21,12 @@ public class PatientController {
     public Patient getOrderById(@PathVariable("id") Long id) {
         return patientService.getPatientById(id);
     }
+
     @GetMapping("/patientName")
-    public Patient getPatientByName(@PathParam("name") String name){
-        return patientService.getPatientByName(name);
+    public Patient getPatientByName(@PathParam("firstName") String firstName,
+                                    @PathParam("lastName") String lastName,
+                                    @PathParam("birthday") String birthday) {
+        return patientService.getPatientByName(firstName, lastName, birthday);
     }
 
     @PostMapping("/patient")

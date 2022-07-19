@@ -42,7 +42,7 @@
                EMAIL,
                ADDRESS
         FROM patient
-        WHERE LAST_NAME = #{name}
+        WHERE LAST_NAME = #{lastName} AND FIRST_NAME = #{firstName};
     </select>
 
     <insert id="addPatient" parameterType="ru.inobitec.patient.model.Patient">
