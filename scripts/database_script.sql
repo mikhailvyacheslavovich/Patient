@@ -25,7 +25,7 @@ DO $$
         SELECT NEXTVAL('patient_seq') INTO v_patient_id;
         INSERT INTO PATIENT(ID, FIRST_NAME, MID_NAME, LAST_NAME, GENDER_ID,
                             BIRTHDAY, PHONE, EMAIL, ADDRESS)
-        VALUES (v_patient_id, 'Alexey', 'Ivan', 'Ivanov', 1, '15-10-1995', '+7(952)-111-11-11', 'ivanov@gmail.com',
+        VALUES (v_patient_id, 'Ivan', 'Alexey', 'Ivanov', 1, '15-10-1995', '+7(952)-111-11-11', 'ivanov@gmail.com',
                 'Lisukova 76 kv 66');
     END
 $$;

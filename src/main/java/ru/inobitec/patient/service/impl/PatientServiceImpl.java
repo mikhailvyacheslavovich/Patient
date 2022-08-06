@@ -6,6 +6,8 @@ import ru.inobitec.patient.model.Patient;
 import ru.inobitec.patient.repository.PatientMapper;
 import ru.inobitec.patient.service.PatientService;
 
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class PatientServiceImpl implements PatientService {

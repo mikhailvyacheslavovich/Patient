@@ -5,11 +5,9 @@ import ru.inobitec.patient.model.Patient;
 import java.util.Date;
 
 public interface PatientService {
-    public Patient getPatientById(Long id);
-    public void addPatient(Patient newPatient);
-
-    public void updatePatient(Patient patientUpdate, Long id);
-
-    public Patient getPatientByName(String firstName, String lastName, String birthday);
-    public void deleteOPatientById(Long id);
+    Patient getPatientById(Long id);
+    void addPatient(Patient newPatient);
+    void updatePatient(Patient patientUpdate, Long id);
+    Patient getPatientByName(String firstName, String lastName, String birthday);
+    void deleteOPatientById(Long id);
 }
