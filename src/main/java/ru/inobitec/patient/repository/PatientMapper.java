@@ -12,7 +12,7 @@ public interface PatientMapper {
 
     Patient getPatientByName(String firstName, String lastName);
 
-    void addPatient(Patient newPatient);
+    Long addPatient(Patient patient);
 
     void updatePatient(Patient patient, Long id);
 

@@ -6,7 +6,7 @@ import java.util.Date;
 
 public interface PatientService {
     Patient getPatientById(Long id);
-    void addPatient(Patient newPatient);
+    Long addPatient(Patient patient);
     void updatePatient(Patient patientUpdate, Long id);
     Patient getPatientByName(String firstName, String lastName, String birthday);
     void deleteOPatientById(Long id);

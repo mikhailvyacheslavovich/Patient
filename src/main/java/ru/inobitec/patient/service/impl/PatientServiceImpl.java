@@ -19,8 +19,9 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void addPatient(Patient newPatient) {
-        patientMapper.addPatient(newPatient);
+    public Long addPatient(Patient patient) {
+        patientMapper.addPatient(patient);
+        return patient.getId();
     }
 
     @Override

@@ -20,7 +20,7 @@ public class PatientController {
     private final PatientService patientService;
 
     @GetMapping("/patient/{id}")
-    public Patient getOrderById(@PathVariable("id") Long id) {
+    public Patient getPatientById(@PathVariable("id") Long id) {
         return patientService.getPatientById(id);
     }
 
@@ -32,9 +32,8 @@ public class PatientController {
     }
 
     @PostMapping("/patient")
-    public String addPatient(@RequestBody Patient newPatient) {
-        patientService.addPatient(newPatient);
-        return "Patient was created";
+    public Long addPatient(@RequestBody Patient patient) {
+        return patientService.addPatient(patient);
     }
 
     @PutMapping("/updatePatient/{id}")
