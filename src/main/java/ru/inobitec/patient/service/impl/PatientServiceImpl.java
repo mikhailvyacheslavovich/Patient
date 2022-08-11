@@ -1,41 +1,41 @@
 package ru.inobitec.patient.service.impl;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.inobitec.patient.model.Patient;
-import ru.inobitec.patient.repository.PatientMapper;
+import ru.inobitec.patient.dto.PatientDTO;
+import ru.inobitec.patient.repository.PatientRepository;
 import ru.inobitec.patient.service.PatientService;
 
-import java.util.Date;
-
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PatientServiceImpl implements PatientService {
 
-    private final PatientMapper patientMapper;
+    @Autowired
+    private final PatientRepository patientRepository;
+
     @Override
-    public Patient getPatientById(Long id) {
-        return patientMapper.getPatientById(id);
+    public PatientDTO getPatientById(Long id) throws RuntimeException {
+        return patientRepository.getPatientById(id);
     }
 
     @Override
-    public Long addPatient(Patient patient) {
-        patientMapper.addPatient(patient);
-        return patient.getId();
+    public Long addPatient(PatientDTO patient) throws RuntimeException {
+        return patientRepository.addPatient(patient).getId();
     }
 
     @Override
-    public void updatePatient(Patient patientUpdate, Long id) {
-        patientMapper.updatePatient(patientUpdate, id);
+    public void updatePatient(PatientDTO patient) throws RuntimeException {
+        patientRepository.updatePatient(patient);
     }
 
     @Override
-    public Patient getPatientByName(String firstName, String lastName, String birthday) {
-        return patientMapper.getPatientByName(firstName, lastName);
+    public PatientDTO getPatientByName(String firstName, String lastName, String birthday) throws RuntimeException {
+        return patientRepository.getPatientByName(firstName, lastName, birthday);
     }
 
     @Override
-    public void deleteOPatientById(Long id) {
-        patientMapper.deletePatientById(id);
+    public void deleteOPatientById(Long id) throws RuntimeException {
+        patientRepository.deleteOPatientById(id);
     }
 }

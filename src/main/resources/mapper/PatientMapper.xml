@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ru.inobitec.patient.repository.PatientMapper">
+<mapper namespace="ru.inobitec.patient.mappers.PatientMapper">
 
-    <resultMap id="Patient" type="ru.inobitec.patient.model.Patient">
+    <resultMap id="Patient" type="ru.inobitec.patient.model.PatientEntity">
         <result property="id" column="id"/>
         <result property="firstName" column="FIRST_NAME"/>
         <result property="midName" column="MID_NAME"/>
@@ -45,7 +45,7 @@
         WHERE LAST_NAME = #{lastName} AND FIRST_NAME = #{firstName};
     </select>
 
-    <insert id="addPatient" keyColumn="id" keyProperty="id" parameterType="ru.inobitec.patient.model.Patient" useGeneratedKeys="true">
+    <insert id="addPatient" keyColumn="id" keyProperty="id" parameterType="ru.inobitec.patient.model.PatientEntity" useGeneratedKeys="true">
         <selectKey  keyProperty="id" resultType="long" order="BEFORE">SELECT nextval('Patient_SEQ')
         </selectKey>
         INSERT INTO patient (id, FIRST_NAME, MID_NAME, LAST_NAME, GENDER_ID, BIRTHDAY, PHONE, EMAIL, ADDRESS)
@@ -53,7 +53,7 @@
         returning*;
     </insert>
 
-    <update id="updatePatient" parameterType="ru.inobitec.patient.model.Patient">
+    <update id="updatePatient" parameterType="ru.inobitec.patient.model.PatientEntity">
         update patient
         set FIRST_NAME = #{patient.firstName},
             MID_NAME   = #{patient.midName},
@@ -63,7 +63,7 @@
             PHONE      = #{patient.phone},
             EMAIL      = #{patient.email},
             ADDRESS    = #{patient.address}
-        where id = #{id};
+        where id = #{patient.id};
     </update>
 
     <delete id="deletePatientById">

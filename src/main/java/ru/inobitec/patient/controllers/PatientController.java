@@ -1,16 +1,11 @@
 package ru.inobitec.patient.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.inobitec.patient.model.Patient;
+import ru.inobitec.patient.dto.PatientDTO;
 import ru.inobitec.patient.service.PatientService;
 
 import javax.websocket.server.PathParam;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/")
@@ -20,32 +15,51 @@ public class PatientController {
     private final PatientService patientService;
 
     @GetMapping("/patient/{id}")
-    public Patient getPatientById(@PathVariable("id") Long id) {
-        return patientService.getPatientById(id);
+    public PatientDTO getPatientById(@PathVariable("id") Long id) {
+        try{
+            return patientService.getPatientById(id);
+        }catch (RuntimeException ex){
+            return null;
+        }
     }
 
     @GetMapping("/patientName")
-    public Patient getPatientByName(@PathParam("firstName") String firstName,
-                                    @PathParam("lastName") String lastName,
-                                    @PathParam("birthday") String birthday) {
-        return patientService.getPatientByName(firstName, lastName, birthday);
+    public PatientDTO getPatientByName(@PathParam("firstName") String firstName,
+                                          @PathParam("lastName") String lastName,
+                                          @PathParam("birthday") String birthday) {
+        try{
+            return patientService.getPatientByName(firstName, lastName, birthday);
+        }catch (RuntimeException ex){
+            return null;
+        }
     }
 
     @PostMapping("/patient")
-    public Long addPatient(@RequestBody Patient patient) {
-        return patientService.addPatient(patient);
+    public Long addPatient(@RequestBody PatientDTO patient) {
+        try{
+            return patientService.addPatient(patient);
+        }catch(RuntimeException ex){
+            return null;
+        }
     }
 
-    @PutMapping("/updatePatient/{id}")
-    public String updatePatient(@RequestBody Patient patientUpdate,
-                                @PathVariable("id") Long id) {
-        patientService.updatePatient(patientUpdate, id);
-        return "Patient updated";
+    @PutMapping("/patient")
+    public String updatePatient(@RequestBody PatientDTO patientUpdate) {
+        try{
+            patientService.updatePatient(patientUpdate);
+            return "Patient updated";
+        } catch (RuntimeException ex){
+            return "Error while updating patient";
+        }
     }
 
-    @DeleteMapping("/deletePatient/{id}")
+    @DeleteMapping("/patient/{id}")
     public String deletePatientById(@PathVariable("id") Long id) {
-        patientService.deleteOPatientById(id);
-        return "Patient deleted";
+        try{
+            patientService.deleteOPatientById(id);
+            return "Patient deleted";
+        }catch(RuntimeException ex){
+            return "Error while deleting patient";
+        }
     }
 }
