@@ -7,6 +7,8 @@ import ru.inobitec.patient.dto.PatientDTO;
 
 import java.util.Date;
 
+import static ru.inobitec.patient.util.StringConstants.DATA_PATTERN;
+
 @Data
 @RequiredArgsConstructor
 public class PatientEntity {
@@ -15,14 +17,14 @@ public class PatientEntity {
     private String midName;
     private String lastName;
     private Byte genderId;
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
-    @JsonFormat(locale="ru", timezone="GMT+3", pattern="dd-mm-yyyy")
+    @DateTimeFormat(pattern = DATA_PATTERN)
+    @JsonFormat(locale = "ru", timezone = "GMT+3", pattern = DATA_PATTERN)
     private Date birthday;
     private String phone;
     private String email;
     private String address;
 
-    public PatientDTO toDTO(){
+    public PatientDTO toDTO() {
         PatientDTO patientDTO = new PatientDTO();
         patientDTO.setAddress(getAddress());
         patientDTO.setBirthday(getBirthday());

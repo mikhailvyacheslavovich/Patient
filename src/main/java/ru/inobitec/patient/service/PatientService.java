@@ -4,8 +4,12 @@ import ru.inobitec.patient.dto.PatientDTO;
 
 public interface PatientService {
     PatientDTO getPatientById(Long id);
+
     Long addPatient(PatientDTO patient);
+
     void updatePatient(PatientDTO patient);
+
     PatientDTO getPatientByName(String firstName, String lastName, String birthday);
+
     void deleteOPatientById(Long id);
 }

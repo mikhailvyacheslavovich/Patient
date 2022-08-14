@@ -1,7 +1,7 @@
 package ru.inobitec.patient.service.impl;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import ru.inobitec.patient.dto.PatientDTO;
 import ru.inobitec.patient.repository.PatientRepository;
@@ -9,33 +9,58 @@ import ru.inobitec.patient.service.PatientService;
 
 @Service
 @AllArgsConstructor
+@Log4j2
 public class PatientServiceImpl implements PatientService {
 
-    @Autowired
     private final PatientRepository patientRepository;
 
     @Override
-    public PatientDTO getPatientById(Long id) throws RuntimeException {
-        return patientRepository.getPatientById(id);
+    public PatientDTO getPatientById(Long id) {
+        try {
+            return patientRepository.getPatientById(id).toDTO();
+        } catch (RuntimeException ex) {
+            log.error(ex.getCause());
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
-    public Long addPatient(PatientDTO patient) throws RuntimeException {
-        return patientRepository.addPatient(patient).getId();
+    public Long addPatient(PatientDTO patient) {
+        try {
+            return patientRepository.addPatient(patient.toEntity()).getId();
+        } catch (RuntimeException ex) {
+            log.error(ex.getCause());
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
-    public void updatePatient(PatientDTO patient) throws RuntimeException {
-        patientRepository.updatePatient(patient);
+    public void updatePatient(PatientDTO patient) {
+        try {
+            patientRepository.updatePatient(patient.toEntity());
+        } catch (RuntimeException ex) {
+            log.error(ex.getCause());
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
-    public PatientDTO getPatientByName(String firstName, String lastName, String birthday) throws RuntimeException {
-        return patientRepository.getPatientByName(firstName, lastName, birthday);
+    public PatientDTO getPatientByName(String firstName, String lastName, String birthday) {
+        try {
+            return patientRepository.getPatientByName(firstName, lastName, birthday).toDTO();
+        } catch (RuntimeException ex) {
+            log.error(ex.getCause());
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public void deleteOPatientById(Long id) throws RuntimeException {
-        patientRepository.deleteOPatientById(id);
+        try {
+            patientRepository.deleteOPatientById(id);
+        } catch (RuntimeException ex) {
+            log.error(ex.getCause());
+            throw new RuntimeException(ex);
+        }
     }
 }

@@ -1,15 +1,15 @@
 package ru.inobitec.patient.repository;
 
-import ru.inobitec.patient.dto.PatientDTO;
+import ru.inobitec.patient.model.PatientEntity;
 
 public interface PatientRepository {
-    PatientDTO getPatientById(Long id);
+    PatientEntity getPatientById(Long id);
 
-    PatientDTO getPatientByName(String firstName, String lastName, String birthday);
+    PatientEntity getPatientByName(String firstName, String lastName, String birthday);
 
-    PatientDTO addPatient(PatientDTO patient);
+    PatientEntity addPatient(PatientEntity patient);
 
-    PatientDTO updatePatient(PatientDTO patient);
+    PatientEntity updatePatient(PatientEntity patient);
 
     void deleteOPatientById(Long id);
 }
