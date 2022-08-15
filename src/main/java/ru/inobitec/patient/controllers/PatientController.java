@@ -35,7 +35,7 @@ public class PatientController {
         try {
             return patientService.getPatientByName(firstName, lastName, birthday);
         } catch (RuntimeException ex) {
-            log.error(ex.getCause());
+            log.info(ex.getCause());
             return null;
         }
     }

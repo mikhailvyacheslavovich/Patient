@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import ru.inobitec.patient.dto.PatientDTO;
+import ru.inobitec.patient.model.PatientEntity;
 import ru.inobitec.patient.repository.PatientRepository;
 import ru.inobitec.patient.service.PatientService;
 
@@ -47,7 +48,12 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientDTO getPatientByName(String firstName, String lastName, String birthday) {
         try {
-            return patientRepository.getPatientByName(firstName, lastName, birthday).toDTO();
+            PatientEntity patient = patientRepository.getPatientByName(firstName, lastName, birthday);
+            if (patient == null){
+                return null;
+            } else  {
+                return patient.toDTO();
+            }
         } catch (RuntimeException ex) {
             log.error(ex.getCause());
             throw new RuntimeException(ex);
