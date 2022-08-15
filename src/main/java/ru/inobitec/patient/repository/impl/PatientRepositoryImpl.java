@@ -29,7 +29,7 @@ public class PatientRepositoryImpl implements PatientRepository {
     @Transactional
     public PatientEntity getPatientByName(String firstName, String lastName, String birthday) {
         try {
-            return patientMapper.getPatientByName(firstName, lastName);
+            return patientMapper.getPatientByName(firstName, lastName, birthday);
         } catch (RuntimeException ex) {
             log.error(ex.getCause());
             throw new RuntimeException(ex);

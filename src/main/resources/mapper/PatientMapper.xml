@@ -42,11 +42,14 @@
                EMAIL,
                ADDRESS
         FROM patient
-        WHERE LAST_NAME = #{lastName} AND FIRST_NAME = #{firstName};
+        WHERE LAST_NAME = #{lastName}
+          AND FIRST_NAME = #{firstName}
+          AND BIRTHDAY = TO_DATE(#{birthday}, 'DD-MM-YYYY');
     </select>
 
-    <insert id="addPatient" keyColumn="id" keyProperty="id" parameterType="ru.inobitec.patient.model.PatientEntity" useGeneratedKeys="true">
-        <selectKey  keyProperty="id" resultType="long" order="BEFORE">SELECT nextval('Patient_SEQ')
+    <insert id="addPatient" keyColumn="id" keyProperty="id" parameterType="ru.inobitec.patient.model.PatientEntity"
+            useGeneratedKeys="true">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">SELECT nextval('Patient_SEQ')
         </selectKey>
         INSERT INTO patient (id, FIRST_NAME, MID_NAME, LAST_NAME, GENDER_ID, BIRTHDAY, PHONE, EMAIL, ADDRESS)
         VALUES (#{id}, #{firstName}, #{midName}, #{lastName}, #{genderId}, #{birthday}, #{phone}, #{email}, #{address})

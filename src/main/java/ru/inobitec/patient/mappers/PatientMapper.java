@@ -8,7 +8,7 @@ import ru.inobitec.patient.model.PatientEntity;
 public interface PatientMapper {
     PatientEntity getPatientById(Long id);
 
-    PatientEntity getPatientByName(String firstName, String lastName);
+    PatientEntity getPatientByName(String firstName, String lastName, String birthday);
 
     Long addPatient(PatientEntity patient);
 

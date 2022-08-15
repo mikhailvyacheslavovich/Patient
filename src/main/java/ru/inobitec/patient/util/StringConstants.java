@@ -15,6 +15,6 @@ public class StringConstants {
 
     public static final String DELETE_PATIENT_NEGATIVE = "Unable to get patient by id ";
 
-    public static final String DATA_PATTERN = "dd-mm-yyyy";
+    public static final String DATA_PATTERN = "dd-MM-yyyy";
 
 }
