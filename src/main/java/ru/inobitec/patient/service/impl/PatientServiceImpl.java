@@ -61,7 +61,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void deleteOPatientById(Long id) throws RuntimeException {
+    public void deletePatientById(Long id) throws RuntimeException {
         try {
             patientRepository.deleteOPatientById(id);
         } catch (RuntimeException ex) {

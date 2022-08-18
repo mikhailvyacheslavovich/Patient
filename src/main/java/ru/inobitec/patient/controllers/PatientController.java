@@ -64,7 +64,7 @@ public class PatientController {
     @DeleteMapping("/patient/{id}")
     public String deletePatientById(@PathVariable("id") Long id) {
         try {
-            patientService.deleteOPatientById(id);
+            patientService.deletePatientById(id);
             return DELETE_PATIENT_POSITIVE;
         } catch (RuntimeException ex) {
             return DELETE_PATIENT_NEGATIVE + id;

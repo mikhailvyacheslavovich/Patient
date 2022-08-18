@@ -11,5 +11,5 @@ public interface PatientService {
 
     PatientDTO getPatientByName(String firstName, String lastName, String birthday);
 
-    void deleteOPatientById(Long id);
+    void deletePatientById(Long id);
 }
