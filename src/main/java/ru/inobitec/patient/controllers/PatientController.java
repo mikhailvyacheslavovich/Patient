@@ -31,9 +31,10 @@ public class PatientController {
     @GetMapping("/patientName")
     public PatientDTO getPatientByName(@PathParam("firstName") String firstName,
                                        @PathParam("lastName") String lastName,
+                                       @PathParam("midName") String midName,
                                        @PathParam("birthday") String birthday) {
         try {
-            return patientService.getPatientByName(firstName, lastName, birthday);
+            return patientService.getPatientByName(firstName, lastName, midName, birthday);
         } catch (RuntimeException ex) {
             log.info(ex.getCause());
             return null;

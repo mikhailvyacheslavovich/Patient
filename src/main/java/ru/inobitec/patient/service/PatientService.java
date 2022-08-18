@@ -9,7 +9,7 @@ public interface PatientService {
 
     void updatePatient(PatientDTO patient);
 
-    PatientDTO getPatientByName(String firstName, String lastName, String birthday);
+    PatientDTO getPatientByName(String firstName, String lastName, String midName, String birthday);
 
     void deletePatientById(Long id);
 }

@@ -27,9 +27,9 @@ public class PatientRepositoryImpl implements PatientRepository {
 
     @Override
     @Transactional
-    public PatientEntity getPatientByName(String firstName, String lastName, String birthday) {
+    public PatientEntity getPatientByName(String firstName, String lastName, String midName, String birthday) {
         try {
-            return patientMapper.getPatientByName(firstName, lastName, birthday);
+            return patientMapper.getPatientByName(firstName, lastName, midName, birthday);
         } catch (RuntimeException ex) {
             log.error(ex.getCause());
             throw new RuntimeException(ex);

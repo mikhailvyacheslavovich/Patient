@@ -44,6 +44,7 @@
         FROM patient
         WHERE LAST_NAME = #{lastName}
           AND FIRST_NAME = #{firstName}
+          AND MID_NAME = #{midName}
           AND BIRTHDAY = TO_DATE(#{birthday}, 'DD-MM-YYYY');
     </select>
 

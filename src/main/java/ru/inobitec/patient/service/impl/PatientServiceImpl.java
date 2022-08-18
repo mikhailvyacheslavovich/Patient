@@ -46,9 +46,9 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDTO getPatientByName(String firstName, String lastName, String birthday) {
+    public PatientDTO getPatientByName(String firstName, String lastName, String midName, String birthday) {
         try {
-            PatientEntity patient = patientRepository.getPatientByName(firstName, lastName, birthday);
+            PatientEntity patient = patientRepository.getPatientByName(firstName, lastName, midName, birthday);
             if (patient == null){
                 return null;
             } else  {
