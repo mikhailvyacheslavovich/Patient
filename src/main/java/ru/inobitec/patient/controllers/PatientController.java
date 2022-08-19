@@ -8,13 +8,20 @@ import ru.inobitec.patient.service.PatientService;
 
 import javax.websocket.server.PathParam;
 
-import static ru.inobitec.patient.util.StringConstants.*;
-
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
 @Log4j2
 public class PatientController {
+
+    private static final String UPDATE_PATIENT_POSITIVE = "Patient updated";
+
+    private static final String UPDATE_PATIENT_NEGATIVE = "Unable to update patient by id ";
+
+    private static final String DELETE_PATIENT_POSITIVE = "Patient deleted";
+
+    private static final String DELETE_PATIENT_NEGATIVE = "Unable to get patient by id ";
+
 
     private final PatientService patientService;
 
