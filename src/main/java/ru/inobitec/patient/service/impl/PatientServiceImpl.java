@@ -18,79 +18,39 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDTO getPatientById(Long id) {
-        try {
-            PatientEntity patient = patientRepository.getPatientById(id);
-            if (patient == null) {
-                throw new PatientNotFoundException();
-            } else {
-                return patient.toDTO();
-            }
-        } catch (PatientNotFoundException pEx) {
-            log.error(pEx.getCause());
+        PatientEntity patient = patientRepository.getPatientById(id);
+        if (patient == null)
             throw new PatientNotFoundException();
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+        else
+            return patient.toDTO();
     }
 
     @Override
     public Long addPatient(PatientDTO patient) {
-        try {
-            return patientRepository.addPatient(patient.toEntity()).getId();
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+        return patientRepository.addPatient(patient.toEntity()).getId();
     }
 
     @Override
     public void updatePatient(PatientDTO patient) {
-        try {
-            PatientEntity patientEntity = patientRepository.updatePatient(patient.toEntity());
-            if (patientEntity == null) {
-                throw new PatientNotFoundException();
-            }
-        } catch (PatientNotFoundException pEx) {
-            log.error(pEx.getCause());
+        PatientEntity patientEntity = patientRepository.updatePatient(patient.toEntity());
+        if (patientEntity == null)
             throw new PatientNotFoundException();
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+
     }
 
     @Override
     public PatientDTO getPatientByName(String firstName, String lastName, String midName, String birthday) {
-        try {
-            PatientEntity patient = patientRepository.getPatientByName(firstName, lastName, midName, birthday);
-            if (patient == null) {
-                throw new PatientNotFoundException();
-            } else {
-                return patient.toDTO();
-            }
-        } catch (PatientNotFoundException pEx) {
-            log.error(pEx.getCause());
+        PatientEntity patient = patientRepository.getPatientByName(firstName, lastName, midName, birthday);
+        if (patient == null)
             throw new PatientNotFoundException();
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+        else
+            return patient.toDTO();
     }
 
     @Override
     public void deletePatientById(Long id) throws RuntimeException {
-        try {
-            Long quantity = patientRepository.deleteOPatientById(id);
-            if (quantity == 0) {
-                throw new PatientNotFoundException();
-            }
-        } catch (PatientNotFoundException pEx) {
-            log.error(pEx.getCause());
+        Long quantity = patientRepository.deleteOPatientById(id);
+        if (quantity == 0)
             throw new PatientNotFoundException();
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
     }
 }

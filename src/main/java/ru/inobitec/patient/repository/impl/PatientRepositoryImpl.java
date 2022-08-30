@@ -17,57 +17,32 @@ public class PatientRepositoryImpl implements PatientRepository {
     @Override
     @Transactional
     public PatientEntity getPatientById(Long id) {
-        try {
-            return patientMapper.getPatientById(id);
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+        return patientMapper.getPatientById(id);
     }
 
     @Override
     @Transactional
     public PatientEntity getPatientByName(String firstName, String lastName, String midName, String birthday) {
-        try {
-            return patientMapper.getPatientByName(firstName, lastName, midName, birthday);
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+        return patientMapper.getPatientByName(firstName, lastName, midName, birthday);
     }
 
     @Override
     @Transactional
     public PatientEntity addPatient(PatientEntity patient) {
-        try {
-            patientMapper.addPatient(patient);
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+        patientMapper.addPatient(patient);
         return patient;
     }
 
     @Override
     @Transactional
     public PatientEntity updatePatient(PatientEntity patient) {
-        try {
-            patientMapper.updatePatient(patient, patient.getId());
-            return patient;
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+        patientMapper.updatePatient(patient, patient.getId());
+        return patient;
     }
 
     @Override
     @Transactional
-    public Long deleteOPatientById(Long id) throws RuntimeException {
-        try {
-            return patientMapper.deletePatientById(id);
-        } catch (RuntimeException ex) {
-            log.error(ex.getCause());
-            throw new RuntimeException(ex);
-        }
+    public Long deleteOPatientById(Long id) {
+        return patientMapper.deletePatientById(id);
     }
 }
