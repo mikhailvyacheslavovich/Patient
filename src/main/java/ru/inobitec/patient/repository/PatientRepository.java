@@ -11,5 +11,5 @@ public interface PatientRepository {
 
     PatientEntity updatePatient(PatientEntity patient);
 
-    void deleteOPatientById(Long id);
+    Long deleteOPatientById(Long id);
 }

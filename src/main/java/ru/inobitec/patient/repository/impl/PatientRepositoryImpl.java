@@ -62,9 +62,9 @@ public class PatientRepositoryImpl implements PatientRepository {
 
     @Override
     @Transactional
-    public void deleteOPatientById(Long id) throws RuntimeException {
+    public Long deleteOPatientById(Long id) throws RuntimeException {
         try {
-            patientMapper.deletePatientById(id);
+            return patientMapper.deletePatientById(id);
         } catch (RuntimeException ex) {
             log.error(ex.getCause());
             throw new RuntimeException(ex);

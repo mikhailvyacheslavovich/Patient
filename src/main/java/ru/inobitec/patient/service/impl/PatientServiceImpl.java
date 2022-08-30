@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import ru.inobitec.patient.dto.PatientDTO;
+import ru.inobitec.patient.exceptions.PatientNotFoundException;
 import ru.inobitec.patient.model.PatientEntity;
 import ru.inobitec.patient.repository.PatientRepository;
 import ru.inobitec.patient.service.PatientService;
@@ -18,7 +19,15 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientDTO getPatientById(Long id) {
         try {
-            return patientRepository.getPatientById(id).toDTO();
+            PatientEntity patient = patientRepository.getPatientById(id);
+            if (patient == null) {
+                throw new PatientNotFoundException();
+            } else {
+                return patient.toDTO();
+            }
+        } catch (PatientNotFoundException pEx) {
+            log.error(pEx.getCause());
+            throw new PatientNotFoundException();
         } catch (RuntimeException ex) {
             log.error(ex.getCause());
             throw new RuntimeException(ex);
@@ -38,7 +47,13 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void updatePatient(PatientDTO patient) {
         try {
-            patientRepository.updatePatient(patient.toEntity());
+            PatientEntity patientEntity = patientRepository.updatePatient(patient.toEntity());
+            if (patientEntity == null) {
+                throw new PatientNotFoundException();
+            }
+        } catch (PatientNotFoundException pEx) {
+            log.error(pEx.getCause());
+            throw new PatientNotFoundException();
         } catch (RuntimeException ex) {
             log.error(ex.getCause());
             throw new RuntimeException(ex);
@@ -49,11 +64,14 @@ public class PatientServiceImpl implements PatientService {
     public PatientDTO getPatientByName(String firstName, String lastName, String midName, String birthday) {
         try {
             PatientEntity patient = patientRepository.getPatientByName(firstName, lastName, midName, birthday);
-            if (patient == null){
-                return null;
-            } else  {
+            if (patient == null) {
+                throw new PatientNotFoundException();
+            } else {
                 return patient.toDTO();
             }
+        } catch (PatientNotFoundException pEx) {
+            log.error(pEx.getCause());
+            throw new PatientNotFoundException();
         } catch (RuntimeException ex) {
             log.error(ex.getCause());
             throw new RuntimeException(ex);
@@ -63,7 +81,13 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void deletePatientById(Long id) throws RuntimeException {
         try {
-            patientRepository.deleteOPatientById(id);
+            Long quantity = patientRepository.deleteOPatientById(id);
+            if (quantity == 0) {
+                throw new PatientNotFoundException();
+            }
+        } catch (PatientNotFoundException pEx) {
+            log.error(pEx.getCause());
+            throw new PatientNotFoundException();
         } catch (RuntimeException ex) {
             log.error(ex.getCause());
             throw new RuntimeException(ex);

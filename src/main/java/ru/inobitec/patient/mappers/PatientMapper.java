@@ -14,6 +14,6 @@ public interface PatientMapper {
 
     void updatePatient(PatientEntity patient, Long id);
 
-    void deletePatientById(Long id);
+    Long deletePatientById(Long id);
 }
 
